@@ -1,4 +1,4 @@
-{{ config(materialized='table',schema='NEW_CHECK',pre_hook=[" grant select on {{this}} to role accountadmin"]) }}
+{{ config(materialized='table') }}
 select * 
 from 
 {{ source('sample','customer') }}
