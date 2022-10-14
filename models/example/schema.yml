@@ -1,0 +1,61 @@
+
+version: 2
+
+models:
+  - name: my_first_dbt_model
+    description: "A starter dbt model"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: my_second_dbt_model
+    description: "A starter dbt model"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+  - name: snowflake_cust
+    description: "Order Price"
+    columns:
+      - name: c_custkey 
+        description: "The primary key for this table taken from customer table"
+        tests:
+          - unique
+          - not_null
+
+  - name: cumilative_order
+    description: "Date wise Order total Price"
+    columns:
+      - name: date 
+        description: "The primary key for this table taken from customer table"
+        tests:
+          - unique
+          - not_null
+  - name: incremental
+    description: "Date wise Order total Price"
+  - name: playing_with_tests
+    description: "Date wise Order total Price"
+    columns:
+    - name: c_custkey
+      tests:
+          - unique
+          - not_null
+
+    - name: c_mktsegment
+      tests:
+
+         - accepted_values:
+              values: ['BUILDING','AUTOMOBILE','MACHINERY','HOUSEHOLD','FURNITURE']
+
+sources:
+  - name: sample
+    database: snowflake_sample_data
+    schema: tpch_sf1
+    tables:
+      - name: customer
+      - name: orders 
